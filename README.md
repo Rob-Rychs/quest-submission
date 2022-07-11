@@ -23,3 +23,14 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 -Resource Oriented Programming: This is by far the most important, Cadence at its core uses things called Resources, and they define pretty much everything we do on Flow. Everything is a resource.
 
 2. Ease of adoption, best practices, clearly solving existing issues.
+
+## Chapter 2 Day 1
+
+1.
+![chapter2day1quest1](https://user-images.githubusercontent.com/16437897/178188491-0007c41a-1eca-4022-a30d-9e72a806b39f.png)
+
+2.
+![chapter2day1quest2](https://user-images.githubusercontent.com/16437897/178188555-41fe148b-e8f5-4f14-bb1d-b2224a588b1b.png)
+
+## Chapter 2 Day 2
+
