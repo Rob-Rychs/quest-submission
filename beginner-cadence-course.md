@@ -4,7 +4,7 @@
 
 1. An openly visible and decentralized database anyone can interact with. https://www.investopedia.com/terms/b/blockchain.asp
 
-2. A smart contract is a piece of code that executes and runs either a transaction (updates state) or a script (reads state) of a blockchain.
+2. A smart contract is a piece of code that executes and runs either a transaction (updates state) or a script (reads state) of a blockchain. Once a smart contract is deployed on the blockchain it will then execute the actions that were written inside of the contract.
 https://www.ibm.com/topics/smart-contracts
 
 3. a transaction (updates state on-chain) and costs gas and a script (reads state) of a blockchain and is free.
@@ -21,7 +21,7 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 -Resource Oriented Programming: This is by far the most important, Cadence at its core uses things called Resources, and they define pretty much everything we do on Flow. Everything is a resource.
 
-2. Ease of adoption, best practices, clearly solving existing issues.
+2. Ease of adoption, best practices, clearly solving existing issues because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 
 
 ## Chapter 2 Day 1
 
@@ -35,7 +35,7 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 1. Because the function changeGreeting would update the state onchain and therefore be a transaction and require gas and signing.
 
-2. AuthAccount is allowing the transaction to access the variables stored in the account during the prepare phase and perhaps modify it before passing it to the execute phase.
+2. AuthAccount is allowing the transaction to access the variables stored in the account during the prepare phase and perhaps modify it before passing it to the execute phase.  because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 
 
 3. Prepare runs before the execute and really is just a way of separating the logic in our code making it easier to read.
 
