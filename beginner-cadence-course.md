@@ -108,6 +108,37 @@ return thing[0x03] this will give keep the optional an
 
 ## Chapter 3 Day 1
 
+1.
+They cannot be copied
+They cannot be lost (or overwritten)
+They cannot be created whenever you want
+You must be extremely explicit about how you handle a resource (for example, moving them)
+Resources are much harder to deal with
+
+2. whenever you need to create something important that shouldn't be easy to delete. example: debt certificate. Structs are containers of data. That's it. Resources are extremely secure, hard to lose, impossible to copy, well kept-track-of containers of data that cannot be lost.
+
+3.
+```
+ pub resource Jacob {
+        pub let rocks: Bool
+        init() {
+            self.rocks = true
+        }
+    }
+```
+
+4. If there isn't a public function to create one you cannot make on in an transaction or scipt unless you properly destroy it
+
+5. Public?
+
+6.
+```
+pub fun createJacob(): @Jacob { // there is 1 here (@)
+        let myJacob <- create Jacob() // there are 2 here (arrow and create)
+        return <- myJacob // there is 1 here (arrow)
+    }
+```
+
 ## Chapter 3 Day 2
 
 ## Chapter 3 Day 3
