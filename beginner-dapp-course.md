@@ -58,6 +58,12 @@ https://replit.com/@Rob-Rychs/LustrousFaintCommunication#pages/index.tsx
 
 ## Chapter 3 Day 1
 
+1.
+![chapter2day1quest1](https://user-images.githubusercontent.com/16437897/178188491-0007c41a-1eca-4022-a30d-9e72a806b39f.png)
+
+2.
+![chapter2day1quest2](https://user-images.githubusercontent.com/16437897/178188555-41fe148b-e8f5-4f14-bb1d-b2224a588b1b.png)
+
 ## Chapter 3 Day 2
 
 ## Chapter 3 Day 3
