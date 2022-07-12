@@ -1,4 +1,4 @@
-# beginner-dappe-course
+# beginner-dapp-course
 
 ## Chapter 1 Day 1
 
