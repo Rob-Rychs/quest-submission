@@ -25,17 +25,36 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 ## Chapter 2 Day 1
 
-1.
+1. frontend: what the user sees and interacts with; backend: a behind the scenes complicated task like heavy data computing on the server, load=-balancing etc.
 
 
-2.
+2. global styling: are styls applied globally to every element in the DOM; module styling: modular styles applied only to the correspondig class/element/component
+
+3. https://replit.com/@Rob-Rychs/LustrousFaintCommunication#pages/index.tsx
+
+
+4. https://replit.com/@Rob-Rychs/LustrousFaintCommunication#pages/index.tsx
 
 
 ## Chapter 2 Day 2
 
+![Screen Shot 2022-07-11 at 11 01 15 AM](https://user-images.githubusercontent.com/16437897/178405481-cca47b8d-5984-4161-9889-1ef2deecf049.png)
+
+![Screen Shot 2022-07-11 at 11 01 08 AM](https://user-images.githubusercontent.com/16437897/178405522-cc5eed5e-1728-47e1-bc45-9558f32e57bb.png)
+
+![Screen Shot 2022-07-11 at 11 01 32 AM](https://user-images.githubusercontent.com/16437897/178405897-4e0331b7-0fa1-40bb-9841-40faef6bca2c.png)
+
+https://replit.com/@Rob-Rychs/LustrousFaintCommunication#pages/index.tsx
+
 ## Chapter 2 Day 3
 
+![Screen Shot 2022-07-11 at 11 08 23 AM](https://user-images.githubusercontent.com/16437897/178406165-f6521c74-9b81-466d-8e15-7dd810105be9.png)
+
 ## Chapter 2 Day 4
+
+![Screen Shot 2022-07-11 at 9 07 51 PM](https://user-images.githubusercontent.com/16437897/178406968-1bd18f24-db86-4aa9-b8ff-b8b347cfa84b.png)
+
+https://replit.com/@Rob-Rychs/LustrousFaintCommunication#pages/index.tsx
 
 ## Chapter 3 Day 1
 
