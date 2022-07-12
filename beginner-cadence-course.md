@@ -4,7 +4,7 @@
 
 1. An openly visible and decentralized database anyone can interact with. https://www.investopedia.com/terms/b/blockchain.asp
 
-2. A smart contract is a piece of code that executes and runs either a transaction (updates state) or a script (reads state) of a blockchain. Once a smart contract is deployed on the blockchain it will then execute the actions that were written inside of the contract.
+2. A smart contract is a piece of code that executes and runs either a transaction (updates state) or a script (reads state) of a blockchain. Once a smart contract is deployed on the blockchain it will then execute the actions that were written inside of the contract. note that they don’t necessarily run a script or transaction; instead once deployed they simply execute the set of actions written inside
 https://www.ibm.com/topics/smart-contracts
 
 3. a transaction (updates state on-chain) and costs gas and a script (reads state) of a blockchain and is free.
@@ -21,7 +21,7 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 -Resource Oriented Programming: This is by far the most important, Cadence at its core uses things called Resources, and they define pretty much everything we do on Flow. Everything is a resource.
 
-2. Ease of adoption, best practices, clearly solving existing issues because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 
+2. Ease of adoption, best practices, clearly solving existing issues because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 5 pillars are useful because they make life easier for both users and developers. Developers can easily transition to it due to its similarity with other programming languages, and it's easy to debug. Users on the other hand can easily read the code because of it's clarity if they're checking the safety of a Contract.
 
 ## Chapter 2 Day 1
 
