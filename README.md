@@ -10,7 +10,7 @@ For usage with https://github.com/emerald-dao/beginner-cadence-course on FLOW
 2. A smart contract is a piece of code that executes and runs either a transaction (updates state) or a script (reads state) of a blockchain.
 https://www.ibm.com/topics/smart-contracts
 
-3. a transaction (updates state) or a script (reads state) of a blockchain.
+3. a transaction (updates state on-chain) and costs gas and a script (reads state) of a blockchain and is free.
 
 ## Chapter 1 Day 2
 
