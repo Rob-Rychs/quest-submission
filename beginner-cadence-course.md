@@ -98,6 +98,14 @@ return thing[0x03] this will give keep the optional an
 
 ## Chapter 2 Day 4
 
+1.-5.
+![Screen Shot 2022-07-12 at 2 24 16 PM](https://user-images.githubusercontent.com/16437897/178598757-f509c524-1e04-41ea-a3d7-c6e4eb73e847.png)
+
+![Screen Shot 2022-07-12 at 2 24 25 PM](https://user-images.githubusercontent.com/16437897/178598778-bc38907c-8818-4747-abe0-ea8f63a92868.png)
+
+![Screen Shot 2022-07-12 at 2 24 41 PM](https://user-images.githubusercontent.com/16437897/178598640-8fdd43ae-3ddd-42fa-a5e6-b54d52afdea6.png)
+
+
 ## Chapter 3 Day 1
 
 ## Chapter 3 Day 2
