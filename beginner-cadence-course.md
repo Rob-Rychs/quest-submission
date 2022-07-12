@@ -1,4 +1,4 @@
-## beginner-cadence-course
+# beginner-cadence-course
 
 ## Chapter 1 Day 1
 
