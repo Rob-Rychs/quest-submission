@@ -51,6 +51,51 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 ## Chapter 2 Day 3
 
+1.
+![Screen Shot 2022-07-12 at 11 37 14 AM](https://user-images.githubusercontent.com/16437897/178571361-2ef585da-8800-44e7-82f2-bbc6483a17f7.png)
+
+
+2.
+```
+pub fun main(): {
+  var favouriteNums: {String: UInt64} = {"Facebook": 0, "Instagram": 0, "Twitter": 0, "YouTube":  10, "Reddit": 0, "LinkedIn": 10}
+  log(favouriteNums.values)
+}
+```
+
+3. The force unwrap of an optional makes it a more stringent typeas it no longer is true when nil
+```
+pub fun main(): Int {
+    let hellos: {String: Int} = {"Hi": 1, "Bonjour": 2, "Hola": 3}
+    return hellos["Bonjour"]! // we are force-unwrapping the optional
+}
+```
+... this will `panic` and abort the program if there is no value at the "Bonjour" key.
+```
+pub fun main(): Int? { // notice the return value is an optional type
+    let hellos: {String: Int} = {"Hi": 1, "Bonjour": 2, "Hola": 3}
+    hellos.remove(Key: "Bonjour")
+    return hellos["Bonjour"] // we leave the optional this will accept `nil`
+    return hellos["Bonjour"]! // will panic here as we removed "Bonjour"key
+}
+```
+
+4. We're expecting to return a type String but instead it's returning a type optional.
+
+Two ways you can fix this dependong on your intention.
+```
+pub fun main(): String {
+let thing: {Address:String} = {0x01: "One", 0x02: "Two", 0x03: "Three"}
+return thing[0x03]! // this will unwrap the optional and give the value
+}
+```
+or
+```
+pub fun main(): String? {
+let thing: {Address:String} = {0x01: "One", 0x02: "Two", 0x03: "Three"}
+return thing[0x03] this will give keep the optional an
+```
+
 ## Chapter 2 Day 4
 
 ## Chapter 3 Day 1
