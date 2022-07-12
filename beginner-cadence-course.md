@@ -33,6 +33,22 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 ## Chapter 2 Day 2
 
+1. Because the function changeGreeting would update the state onchain and therefore be a transaction and require gas and signing.
+
+2. AuthAccount is allowing the transaction to access the variables stored in the account during the prepare phase and perhaps modify it before passing it to the execute phase.
+
+3. Prepare runs before the execute and really is just a way of separating the logic in our code making it easier to read.
+
+4.
+
+![Screen Shot 2022-07-12 at 10 21 49 AM](https://user-images.githubusercontent.com/16437897/178560891-094c355b-3dae-430e-806f-eddc22ea3eb3.png)
+
+![Screen Shot 2022-07-12 at 10 22 02 AM](https://user-images.githubusercontent.com/16437897/178560858-a1885c78-cf7c-45ac-b278-3db3e5c4d75e.png)
+
+![Screen Shot 2022-07-12 at 10 25 01 AM](https://user-images.githubusercontent.com/16437897/178560609-11b3eaab-aed2-440c-a46a-ee882088b37b.png)
+
+![Screen Shot 2022-07-12 at 10 25 12 AM](https://user-images.githubusercontent.com/16437897/178560815-cefa9844-2b63-4f8a-93a8-8d37d9a972ac.png)
+
 ## Chapter 2 Day 3
 
 ## Chapter 2 Day 4
