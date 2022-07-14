@@ -208,6 +208,70 @@ pub contract ResourceIOU {
 
 ## Chapter 3 Day 3
 
+1. -Q: Define your own contract that stores a dictionary of resources. Add a function to get a reference to one of the resources in the dictionary.
+
+```Cadence
+pub contract myRefEx {
+
+    pub var dictionaryOfTokens: @{String: Token}
+
+    pub resource Token {
+        pub let ticker: String
+        init(_ticker: String) {
+            self.ticker = _ticker
+        }
+    }
+
+    pub fun getReference(key: String): &Token? {
+        return (&self.dictionaryOfTokens[key] as &Token?)!
+    }
+
+    init() {
+        self.dictionaryOfTokens <- {
+            "usdc": <- create Token(_ticker: "USDC"), 
+            "flow": <- create Token(_ticker: "FLOW")
+        }
+    }
+}
+```
+
+2. -Q: Create a script that reads information from that resource using the reference from the function you defined in part 1.
+
+```Cadence
+pub contract myRefEx {
+
+    pub var dictionaryOfTokens: @{String: Token}
+
+    pub resource Token {
+        pub let ticker: String
+        init(_ticker: String) {
+            self.ticker = _ticker
+        }
+    }
+
+    pub fun getReference(key: String): &Token? {
+        return (&self.dictionaryOfTokens[key] as &Token?)!
+    }
+
+    init() {
+        self.dictionaryOfTokens <- {
+            "usdc": <- create Token(_ticker: "USDC"), 
+            "flow": <- create Token(_ticker: "FLOW")
+        }
+    }
+}
+```
+script:
+```Cadence
+import myRefEx from 0x02
+
+pub fun main(): String {
+  let ref = myRefEx.getReference(key: "usdc")
+  return ref.ticker // playgorund giving em an error but i cant see it?
+}
+```
+3. 
+
 ## Chapter 3 Day 4
 
 ## Chapter 3 Day 5
