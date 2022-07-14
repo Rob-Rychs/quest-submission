@@ -2,16 +2,22 @@
 
 ## Chapter 1 Day 1
 
-1. An openly visible and decentralized database anyone can interact with. https://www.investopedia.com/terms/b/blockchain.asp
+1. -Q:  Explain what the Blockchain is in your own words.
 
-2. A smart contract is a piece of code that executes and runs either a transaction (updates state) or a script (reads state) of a blockchain. Once a smart contract is deployed on the blockchain it will then execute the actions that were written inside of the contract. note that they don’t necessarily run a script or transaction; instead once deployed they simply execute the set of actions written inside
+An openly visible and decentralized database anyone can interact with. https://www.investopedia.com/terms/b/blockchain.asp
+
+2. -Q:  Explain what a Smart Contract is.
+
+A smart contract is a piece of code that executes and runs either a transaction (updates state) or a script (reads state) of a blockchain. Once a smart contract is deployed on the blockchain it will then execute the actions that were written inside of the contract. note that they don’t necessarily run a script or transaction; instead once deployed they simply execute the set of actions written inside (like a rulebook)
 https://www.ibm.com/topics/smart-contracts
 
-3. a transaction (updates state on-chain) and costs gas and a script (reads state) of a blockchain and is free.
+3. -Q:  Explain the difference between a script and a transaction.
+
+a transaction (updates state on-chain) and costs gas and a script (reads state) of a blockchain and is free.
 
 ## Chapter 1 Day 2
 
-1. 
+1. -Q: What are the 5 Cadence Programming Language Pillars?
 -Safety and Security: Every Smart Contract must be secure. Cadence maximizes efficiency while maintaining the highest levels of safety and security. It accomplishes this because of its insanely strong type system, separation between contracts and transactions, and Resource Oriented Programming.
 
 -Clarity: Code should be easy to read, especially Smart Contract code so that we, as users, can verify it is safe. This is achieved by making the code declarative and allowing the developer to express their intentions directly. Cadence makes those intentions very clear by design, which, along with readability, make auditing and reviewing more efficient.
@@ -21,7 +27,9 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 -Resource Oriented Programming: This is by far the most important, Cadence at its core uses things called Resources, and they define pretty much everything we do on Flow. Everything is a resource.
 
-2. Ease of adoption, best practices, clearly solving existing issues because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 5 pillars are useful because they make life easier for both users and developers. Developers can easily transition to it due to its similarity with other programming languages, and it's easy to debug. Users on the other hand can easily read the code because of it's clarity if they're checking the safety of a Contract.
+2. -Q: In your opinion, even without knowing anything about the Blockchain or coding, why could the 5 Pillars be useful (you don't have to answer this for #5)?
+
+Ease of adoption, best practices, clearly solving existing issues because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 5 pillars are useful because they make life easier for both users and developers. Developers can easily transition to it due to its similarity with other programming languages, and it's easy to debug. Users on the other hand can easily read the code because of it's clarity if they're checking the safety of a Contract.
 
 ## Chapter 2 Day 1
 
@@ -33,11 +41,17 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 ## Chapter 2 Day 2
 
-1. Because the function changeGreeting would update the state onchain and therefore be a transaction and require gas and signing.
+1. -Q: Explain why we wouldn't call changeGreeting in a script.
 
-2. AuthAccount is allowing the transaction to access the variables stored in the account during the prepare phase and perhaps modify it before passing it to the execute phase.  because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 
+Because the function changeGreeting would update the state onchain and therefore be a transaction and require gas and signing.
 
-3. Prepare runs before the execute and really is just a way of separating the logic in our code making it easier to read.
+2. -Q: What does the AuthAccount mean in the prepare phase of the transaction?
+
+AuthAccount is allowing the transaction to access the variables stored in the account during the prepare phase and perhaps modify it before passing it to the execute phase.  because of Cadence’s ‘Safety and Security’ pillar that, developers can focus solely on building their contract without having to worry about there being any security exploits in their contracts. 
+
+3. -Q:What is the difference between the prepare phase and the execute phase in the transaction?
+
+Prepare runs before the execute and really is just a way of separating the logic in our code making it easier to read. The prepare phase is used to access data in the authorizers account, while the execute phase is used to call functions that change/modify the data in theaccount.
 
 4.
 
@@ -56,7 +70,7 @@ Developer Experience: The developer should be able to debug in an easy manner, u
 
 
 2.
-```
+```Cadence
 pub fun main(): {
   var favouriteNums: {String: UInt64} = {"Facebook": 0, "Instagram": 0, "Twitter": 0, "YouTube":  10, "Reddit": 0, "LinkedIn": 10}
   log(favouriteNums.values)
@@ -64,14 +78,14 @@ pub fun main(): {
 ```
 
 3. The force unwrap of an optional makes it a more stringent typeas it no longer is true when nil
-```
+```Cadence
 pub fun main(): Int {
     let hellos: {String: Int} = {"Hi": 1, "Bonjour": 2, "Hola": 3}
     return hellos["Bonjour"]! // we are force-unwrapping the optional
 }
 ```
 ... this will `panic` and abort the program if there is no value at the "Bonjour" key.
-```
+```Cadence
 pub fun main(): Int? { // notice the return value is an optional type
     let hellos: {String: Int} = {"Hi": 1, "Bonjour": 2, "Hola": 3}
     hellos.remove(Key: "Bonjour")
@@ -83,7 +97,7 @@ pub fun main(): Int? { // notice the return value is an optional type
 4. We're expecting to return a type String but instead it's returning a type optional.
 
 Two ways you can fix this dependong on your intention.
-```
+```Cadence
 pub fun main(): String {
 let thing: {Address:String} = {0x01: "One", 0x02: "Two", 0x03: "Three"}
 return thing[0x03]! // this will unwrap the optional and give the value
@@ -117,8 +131,8 @@ Resources are much harder to deal with
 
 2. whenever you need to create something important that shouldn't be easy to delete. example: debt certificate. Structs are containers of data. That's it. Resources are extremely secure, hard to lose, impossible to copy, well kept-track-of containers of data that cannot be lost.
 
-3.
-```
+3. the create keyword coupled with the declaration format below
+```Cadence
  pub resource Jacob {
         pub let rocks: Bool
         init() {
@@ -129,10 +143,10 @@ Resources are much harder to deal with
 
 4. If there isn't a public function to create one you cannot make on in an transaction or scipt unless you properly destroy it
 
-5. Public?
+5. Public resource of type @Jacob
 
 6.
-```
+```Cadence
 pub fun createJacob(): @Jacob { // there is 1 here (@)
         let myJacob <- create Jacob() // there are 2 here (arrow and create)
         return <- myJacob // there is 1 here (arrow)
