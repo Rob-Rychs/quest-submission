@@ -249,7 +249,7 @@ pub contract myRefEx {
         }
     }
 
-    pub fun getReference(key: String): &Token? {
+    pub fun getReference(key: String): &Token {
         return (&self.dictionaryOfTokens[key] as &Token?)!
     }
 
@@ -270,7 +270,7 @@ pub fun main(): String {
   return ref.ticker // playgorund giving em an error but i cant see it?
 }
 ```
-3. 
+3. References are useful because you can use pieces of the data in the resource in your code without actually having to load that entire resource.
 
 ## Chapter 3 Day 4
 
