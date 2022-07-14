@@ -155,6 +155,57 @@ pub fun createJacob(): @Jacob { // there is 1 here (@)
 
 ## Chapter 3 Day 2
 
+```Cadence
+pub contract ResourceIOU {
+
+    pub var dictionaryOfIous: @{UInt64: Iou}
+    pub var arrayOfIous: @[Iou]
+
+    pub resource Iou {
+        pub let principal: UInt64
+        // pub let ower: Address
+        // pub let owee: Address
+        // pub let unit: String
+        // pub let interest: Bool
+        init() {
+            self.principal = 10
+            //self.ower = 0x01
+            //self.owee = 0x02
+            //self.unit = "usdc"
+            //self.interest = false
+        }
+    }
+
+    // functions
+    pub fun addIou(iou: @Iou) {
+        let key = iou.principal
+        
+        let oldIou <- self.dictionaryOfIous[key] <- iou
+        destroy oldIou
+    }
+
+    pub fun removeIou(index: UInt64): @Iou {
+        let iou <- self.dictionaryOfIous.remove(key: index) ?? panic("Could not update the IOU!")
+        return <- iou
+    }
+
+     pub fun addIouArray(iou: @Iou) {
+        self.arrayOfIous.append(<- iou)
+    }
+
+    pub fun removeIouArray(index: Int): @Iou {
+        return <- self.arrayOfIous.remove(at: index)
+    }
+
+
+    init() {
+        self.dictionaryOfIous <- {}
+        self.arrayOfIous <- []
+    }
+
+}
+```
+
 ## Chapter 3 Day 3
 
 ## Chapter 3 Day 4
