@@ -274,6 +274,83 @@ pub fun main(): String {
 
 ## Chapter 3 Day 4
 
+1.
+-Resource interfaces are requirements. If a resource implements a resource interface, it MUST define the things in the interface.
+-you can also choose not to expose functions.
+
+2.
+```Cadence
+pub contract IOU {
+
+    pub resource interface IIou {
+      pub let principal: UInt64
+      pub let ower: Address
+      pub let owee: Address
+      pub let paid: Bool
+    }
+
+    pub resource Iou: IIou {
+      pub let principal: UInt64
+      pub let ower: Address
+      pub let owee: Address
+      pub let paid: Bool
+      init() {
+        self.principal = 100
+        self.ower = 0x01
+        self.owee = 0x02
+        self.paid = false
+      }
+    }
+
+    pub fun noInterface() {
+      let test: @Iou <- create Iou()
+      log(test.paid) // 
+
+      destroy test
+    }
+
+    pub fun yesInterface() {
+      let test: @Iou{IIou} <- create Iou()
+      log(test.paid) 
+
+      destroy test
+    }
+}
+```
+
+3.
+```Cadence
+pub contract Stuff {
+
+    pub struct interface ITest {
+      pub var greeting: String
+      pub var favouriteFruit: String
+    }
+
+    // ERROR:
+    // `structure Stuff.Test does not conform 
+    // to structure interface Stuff.ITest`
+    pub struct Test: ITest {
+      pub var greeting: String
+      pub var favouriteFruit: String // add the requird fields here
+
+      pub fun changeGreeting(newGreeting: String): String {
+        self.greeting = newGreeting
+        return self.greeting // returns the new greeting
+      }
+
+      init() {
+        self.greeting = "Hello!"
+      }
+    }
+
+    pub fun fixThis() {
+      let test: @Test{ITest} <- Test() // add @ and arrow
+      let newGreeting = test.changeGreeting(newGreeting: "Bonjour!") // ERROR HERE: `member of restricted type is not accessible: changeGreeting`
+      log(newGreeting)
+    }
+```
+
 ## Chapter 3 Day 5
 
 ## Chapter 4 Day 1
