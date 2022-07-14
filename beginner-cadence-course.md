@@ -286,14 +286,19 @@ pub contract IOU {
       pub let principal: UInt64
       pub let ower: Address
       pub let owee: Address
-      pub let paid: Bool
+      pub var paid: Bool
+      pub fun updatePaid(newUpdate: Bool): Bool
     }
 
     pub resource Iou: IIou {
       pub let principal: UInt64
       pub let ower: Address
       pub let owee: Address
-      pub let paid: Bool
+      pub var paid: Bool
+      pub fun updatePaid(newUpdate: Bool): Bool {
+        self.paid = newUpdate
+        return self.paid
+      }
       init() {
         self.principal = 100
         self.ower = 0x01
@@ -304,7 +309,7 @@ pub contract IOU {
 
     pub fun noInterface() {
       let test: @Iou <- create Iou()
-      log(test.paid) // 
+      log(test.paid)  
 
       destroy test
     }
@@ -315,6 +320,25 @@ pub contract IOU {
 
       destroy test
     }
+
+    pub fun paid(newUpdate: Bool) {
+        var test: @Iou{IIou} <- create Iou()
+        log(test.paid)
+        test.updatePaid(newUpdate: true)
+        log(test.paid)
+
+        destroy test
+    } 
+}
+```
+script
+```Cadence
+import IOU from 0x05
+
+pub fun main(): Int {
+  IOU.paid(newUpdate: true)
+  log("value updated")
+  return 1
 }
 ```
 
@@ -352,6 +376,8 @@ pub contract Stuff {
 ```
 
 ## Chapter 3 Day 5
+
+1.
 
 ## Chapter 4 Day 1
 
