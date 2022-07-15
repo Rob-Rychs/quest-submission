@@ -378,7 +378,7 @@ pub contract Stuff {
 ## Chapter 3 Day 5
 
 1.
-- a is read and write from everywhere
+- a is read from everywhere and write from everywhere except area4
 - b is read from everywhere and write fromn are1
 - c is read everywhere except area4 and is write from area1
 - d is read and write from area 1
