@@ -378,6 +378,13 @@ pub contract Stuff {
 ## Chapter 3 Day 5
 
 1.
+a is read and write from everywhere
+b is read from everywhere and write fromn are1
+c is read everywhere except area4 and is write from area1
+d is read and write from area 1
+pubFunc can be called from anywhere
+contractFunc can be called form area1-3
+privatefunc can only be called from area 1
 
 ## Chapter 4 Day 1
 
