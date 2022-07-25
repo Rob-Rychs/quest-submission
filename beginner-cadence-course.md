@@ -390,11 +390,202 @@ pub contract Stuff {
 - contractFunc can be called form area1-3
 - privatefunc can only be called from area 1
 
-## Chapter 4 Day 1
+## Chapter 4 - Day 1
+- Q: Explain what lives inside of an account.
 
-## Chapter 4 Day 2
+A: An account is a container of two categories, Contracts and Paths. You can have 0-Many different smart contracts inside an account, and there are 3 Paths inside an account. There is a path to storage which holds all the data within an account and paths to public and private account data.
 
-## Chapter 4 Day 3
+- Q: What is the difference between the /storage/, /public/, and /private/ paths?
+
+A:
+1) /storage contains all the data within an account and is only accessbile by the account owner.
+2) /public grants access to the account's data to everyone
+3) /private grants access to the account owner and anyone else they choose to grant access to.
+
+- Q: What does .save() do? What does .load() do? What does .borrow() do?
+
+A:
+1) .save() will actually store data to the account
+2) .load() will move data out of the account
+3) .borrow() will just look at data inside an account
+
+- Q: Explain why we couldn't save something to our account storage inside of a script.
+
+A: Saving something to our account would require changing the block chain. Therefore we need a transaction in order to take in our account name and use it as a "permission slip" to add data to our account (and therefore change the blockchain).
+
+- Q: Explain why I couldn't save something to your account.
+
+A: Each Transaction takes in an AuthAccount Parameter which is going to represent the account address responsible for making the transaction. Saving requires access to an accounts storage, and only the account owner has access to their storage. Therefore the only storage an account could save anything to is their own.
+
+- Q: Define a contract that returns a resource that has at least 1 field in it. Then, write 2 transactions:
+
+
+A: 
+
+```Cadence
+access(all) contract coins {
+
+   access(all) resource Bitcoin {
+    
+        access(all) var price: UInt64
+
+        init(){
+            self.price = 23000
+        }
+
+   }
+
+   access(all) fun createBitcoin(): @Bitcoin {
+    return <- create Bitcoin()
+   }
+
+    
+    init() {
+
+    }
+
+}
+```
+A transaction that first saves the resource to account storage, then loads it out of account storage, logs a field inside the resource, and destroys it.
+
+```Cadence
+import coins from 0x01
+
+transaction {
+
+  prepare(acct: AuthAccount) {
+    let newCoin <- coins.createBitcoin()
+    acct.save(<- newCoin, to: /storage/myNewCoin)
+    let loadCoin <- acct.load<@coins.Bitcoin>(from: /storage/myNewCoin) ?? panic("You have no Bitcoin!")
+    log(loadCoin.price)
+    destroy loadCoin
+    
+    }
+  execute {
+    
+  }
+}
+
+```
+A transaction that first saves the resource to account storage, then borrows a reference to it, and logs a field inside the resource.
+```Cadence
+import coins from 0x01
+
+transaction {
+
+  prepare(acct: AuthAccount) {
+    let newCoin <- coins.createBitcoin()
+    acct.save(<- newCoin, to: /storage/myNewCoin)
+    let borrowedCoin = acct.borrow<&coins.Bitcoin>(from: /storage/myNewCoin) ?? panic("You have no Bitcoin!")
+    log(borrowedCoin.price)
+    
+    }
+  execute {
+    
+  }
+}
+```
+
+## Chapter 4 - Day 2
+
+- Q: What does .link() do?
+
+A: .link() will "map" a resource that is in account storage to a public or private path so that others can access it.
+
+- Q: In your own words (no code), explain how we can use resource interfaces to only expose certain things to the /public/ path.
+
+A: When we link a resource to the /public path we can restrict the resource we are sharing to an interface that it implements. We can choose to include as much or little in the interface that we want others to access. This way others will only have access to the interface and therefore only the elements we have pre-selected.
+
+- Q: Deploy a contract that contains a resource that implements a resource interface. Then, do the following:
+
+```Cadence
+access(all) contract coins {
+
+    access(all) resource interface IBitcoin{
+        access(all) var price: UInt64
+    }
+
+   access(all) resource Bitcoin: IBitcoin {
+    
+        access(all) var price: UInt64
+        access(all) let owned: Bool
+
+        init(){
+            self.price = 23000
+            self.owned = false
+        }
+
+   }
+
+   access(all) fun createBitcoin(): @Bitcoin {
+    return <- create Bitcoin()
+   }
+
+    
+    init() {
+
+    }
+
+}
+```
+In a transaction, save the resource to storage and link it to the public with the restrictive interface.
+
+```Cadence
+import coins from 0x01
+
+transaction {
+
+  prepare(acct: AuthAccount) {
+    let newCoin <- coins.createBitcoin()
+    acct.save(<- newCoin, to: /storage/myNewCoin)
+    acct.link<&coins.Bitcoin{coins.IBitcoin}>(/public/myNewCoin, target: /storage/myNewCoin)
+    
+    }
+  execute {
+    
+  }
+}
+```
+
+Run a script that tries to access a non-exposed field in the resource interface, and see the error pop up.
+
+![failed_script](https://user-images.githubusercontent.com/93283651/180036518-07e43722-37bf-4ba0-b4b3-b1c1393c2578.PNG)
+
+Run the script and access something you CAN read from. Return it from the script.
+
+```Cadence
+import coins from 0x01
+
+pub fun main(account: Address): UInt64 {
+  let myCapability: Capability<&coins.Bitcoin{coins.IBitcoin}> = getAccount(account).getCapability<&coins.Bitcoin{coins.IBitcoin}>(/public/myNewCoin)
+  let checkOwnership: &coins.Bitcoin{coins.IBitcoin} = myCapability.borrow() ?? panic("You do not have Capability.")
+
+  return checkOwnership.price
+}
+
+```
+
+## Chapter 4 - Day 3
+
+- Q: Why did we add a Collection to this contract? List the two main reasons.
+
+A: We added a collection so we can easily store all our NFTs in one storage path, and so that Other people are able to give us more NFTs
+
+- Q: What do you have to do if you have resources "nested" inside of another resource? ("Nested resources")
+
+A: You must define a destroy function that destroys the nested resources.
+
+- Q: Brainstorm some extra things we may want to add to this contract. Think about what might be problematic with this contract and how we could fix it.
+
+Idea #1: Do we really want everyone to be able to mint an NFT? 🤔.
+- A: We could add an NFT Interface that restricts the creatNFT function. Obviously we then change the NFT resource to implement the Interface and we will 
+then update the NFT resource in the Collection to be restricted to the Interface functionality.
+
+Idea #2: If we want to read information about our NFTs inside our Collection, right now we have to take it out of the Collection to do so. Is this good?
+- A: No, this is not safe. We want our NFTs to stay put until we want to do something meaningful with them. We should create a new function that returns a reference to any NFT in our collection. This way if we want to read information about one inside our Collection we can just give out the reference instead.
+
+Additional Idea
+- We might only want certain NFTs to be minted up to a certain amount in order to keep them scarce and valuable. In our NFT resource we should add a new field for totalMinted and initialize it to 0 in our init() function. Then in our createNFT function we should specify that IF totalMinted < our desired maximum amount then we can create a new NFT, but if the totalMinted is == to our desired maximum amount then do not create a new NFT. (Using this logic, I do not know how we could execute this function if it specifies that it returns an @NFT but then we prevent it from creating an NFT and therefore can not return anything.)
 
 ## Chapter 4 Day 4
 
